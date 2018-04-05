@@ -183,7 +183,9 @@ function start_contrail() {
     #NOTE: contrail-dns checks for '/usr/bin/contrail-named' in /proc/[pid]/cmdline to retrieve bind status
     run_process contrail-named "$(which contrail-named) -g -c /etc/contrail/dns/contrail-named.conf" root root
     # NodeJS needs to be run in the source UI foder. Hack to set working directory in the systemd unit file
-    for ui_type in job web; do
+    #FIX-sasi
+    if is_service_enabled contrail-ui-webs contrail-ui-jobs; then
+     for ui_type in job web; do
         local service_name="contrail-ui-${ui_type}s"
         local systemd_service="devstack@${service_name}.service"
         local unitfile=$SYSTEMD_DIR/$systemd_service
@@ -193,7 +195,8 @@ function start_contrail() {
         iniset -sudo $unitfile "Service" "WorkingDirectory" "$CONTRAIL_DEST/contrail-web-core"
         $SYSTEMCTL daemon-reload
         $SYSTEMCTL start $systemd_service
-    done
+     done
+    fi
 
     SCREEN_NAME="$STACK_SCREEN_NAME"
 }
