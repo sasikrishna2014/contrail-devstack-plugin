@@ -191,10 +191,11 @@ function start_contrail() {
         local unitfile=$SYSTEMD_DIR/$systemd_service
         local service_binary="${ui_type}ServerStart.js"
         run_process $service_name "$(which nodejs) $service_binary" root root
-        $SYSTEMCTL stop $systemd_service
+        #sasi sudo $SYSTEMCTL stop $systemd_service
         iniset -sudo $unitfile "Service" "WorkingDirectory" "$CONTRAIL_DEST/contrail-web-core"
-        $SYSTEMCTL daemon-reload
-        $SYSTEMCTL start $systemd_service
+	#sasi sudo $SYSTEMCTL stop $systemd_service
+        sudo $SYSTEMCTL daemon-reload #sasi sudo
+        sudo $SYSTEMCTL start $systemd_service #sasi sudo
      done
     fi
 
