@@ -51,7 +51,11 @@ function install_cassandra() {
             wget http://launchpadlibrarian.net/109052632/python-support_1.0.15_all.deb
             sudo dpkg -i python-support_1.0.15_all.deb  # dependence to cassandra deb package no available anymore on Ubuntu repo
         fi
-        install_package cassandra
+        #install_package cassandra
+	wget http://dl.bintray.com/apache/cassandra/pool/main/c/cassandra/cassandra_3.4_all.deb
+	sudo dpkg -i cassandra_3.4_all.deb
+	wget http://dl.bintray.com/apache/cassandra/pool/main/c/cassandra/cassandra-tools_3.4_all.deb
+	sudo dpkg -i cassandra-tools_3.4_all.deb
     fi
 }
 
