@@ -82,6 +82,8 @@ function contrail_config_cassandra()
 
     sudo sed -i "s/seeds:.*/seeds: $CASSANDRA_IP_LIST/" /etc/cassandra/cassandra.yaml
 
+    sudo sed -i "s/-Xss.*/-Xss2048k/" /etc/cassandra/jvm.options
+    
     stop_service cassandra || true
     sudo rm -Rf /var/lib/cassandra/*
     start_service cassandra
