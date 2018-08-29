@@ -38,12 +38,12 @@ function install_cassandra() {
 
     if ! which cassandra > /dev/null 2>&1 ; then
         echo "Installing cassanadra"
-        echo "deb http://www.apache.org/dist/cassandra/debian 34x main" | \
-        sudo tee /etc/apt/sources.list.d/cassandra.list
+        #echo "deb http://www.apache.org/dist/cassandra/debian 34x main" | \
+        #sudo tee /etc/apt/sources.list.d/cassandra.list
         # Use curl instead of gpg as it deals better with proxies
-        curl -sL --retry 5 "https://www.apache.org/dist/cassandra/KEYS" | sudo apt-key add -
+        # curl -sL --retry 5 "https://www.apache.org/dist/cassandra/KEYS" | sudo apt-key add -
 
-        sudo -E apt-get update
+        #sudo -E apt-get update
         # sudo -E apt-get install -y cassandra
         # On Xenial, force to use jre 8. jre 9 is install by default and conflicts with Cassandra 2.1
         if _vercmp $os_RELEASE "==" '16.04'; then
@@ -52,10 +52,14 @@ function install_cassandra() {
             sudo dpkg -i python-support_1.0.15_all.deb  # dependence to cassandra deb package no available anymore on Ubuntu repo
         fi
         #install_package cassandra
-	wget http://dl.bintray.com/apache/cassandra/pool/main/c/cassandra/cassandra_3.4_all.deb
-	sudo dpkg -i cassandra_3.4_all.deb
-	wget http://dl.bintray.com/apache/cassandra/pool/main/c/cassandra/cassandra-tools_3.4_all.deb
-	sudo dpkg -i cassandra-tools_3.4_all.deb
+	#wget http://dl.bintray.com/apache/cassandra/pool/main/c/cassandra/cassandra_3.4_all.deb
+	#sudo dpkg -i cassandra_3.4_all.deb
+	#wget http://dl.bintray.com/apache/cassandra/pool/main/c/cassandra/cassandra-tools_3.4_all.deb
+	#sudo dpkg -i cassandra-tools_3.4_all.deb
+	wget http://dl.bintray.com/apache/cassandra/pool/main/c/cassandra/cassandra_3.11.3_all.deb
+        sudo dpkg -i cassandra_3.11.3_all.deb
+        wget http://dl.bintray.com/apache/cassandra/pool/main/c/cassandra/cassandra-tools_3.11.3_all.deb
+        sudo dpkg -i cassandra-tools_3.11.3_all.deb
     fi
 }
 
