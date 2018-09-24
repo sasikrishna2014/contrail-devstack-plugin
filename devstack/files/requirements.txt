@@ -36,6 +36,5 @@ sandesh-common
 sseclient
 stevedore
 thrift==0.9.3
-vnc_api
 xmltodict
 
