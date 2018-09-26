@@ -176,7 +176,8 @@ function start_contrail() {
     [ ! -d /var/log/contrail ] && sudo mkdir /var/log/contrail
     sudo chmod 777 /var/log/contrail
 
-    run_process contrail-vrouter "$(which contrail-vrouter-agent) --config_file=/etc/contrail/contrail-vrouter-agent.conf" root root
+    #can consider starting as system services as sg root is not working without password
+    run_process contrail-vrouter "sudo $(which contrail-vrouter-agent) --config_file=/etc/contrail/contrail-vrouter-agent.conf" root root
     run_process contrail-api "$(which contrail-api) --conf_file /etc/contrail/contrail-api.conf"
     # Wait for api to be ready as it is used by other services and provisioning scripts used just after
     is_service_enabled contrail-api && wget --no-proxy --retry-connrefused --no-check-certificate --waitretry=1 -t 60 -q -O /dev/null http://$APISERVER_IP:8082 || true
