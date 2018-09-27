@@ -56,7 +56,7 @@ SCONS_ARGS="$SCONS_ARGS install"
 # force the reload of vrouter kernel module in stack.sh
 RELOAD_VROUTER=$(trueorfalse False RELOAD_VROUTER)
 # kernel modules options
-VR_KMOD_OPTS=${VR_KMOD_OPTS:-"vr_flow_entries=5120 vr_oflow_entries=512 vr_bridge_entries=512 vr_bridge_oentries=512"}
+VR_KMOD_OPTS=${VR_KMOD_OPTS:-"vr_flow_entries=4096 vr_oflow_entries=512 vr_bridge_entries=512 vr_bridge_oentries=512"}
 
 # Services configuration
 #-----------------------
