@@ -439,7 +439,7 @@ function contrail_config_vrouter_agent()
     iniset -sudo $config_file SERVICE-INSTANCE netns_command $(which opencontrail-vrouter-netns)
     iniset -sudo $config_file SERVICE-INSTANCE docker_command $(which opencontrail-vrouter-docker)
 
-    #iniset -sudo $config_file DEFAULT log_file ' '
+    iniset -sudo $config_file DEFAULT log_file '/var/log/contrail/contrail-vrouter-agent.log'
     iniset -sudo $config_file DEFAULT log_level 'SYS_DEBUG'
     iniset -sudo $config_file DEFAULT log_local 1
 }
