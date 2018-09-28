@@ -184,7 +184,7 @@ function start_contrail() {
     run_process contrail-disco "$(which contrail-discovery) --conf_file /etc/contrail/contrail-discovery.conf"
     run_process contrail-svc "$(which contrail-svc-monitor) --conf_file /etc/contrail/contrail-svc-monitor.conf"
     run_process contrail-schema "$(which contrail-schema) --conf_file /etc/contrail/contrail-schema.conf"
-    run_process contrail-control "$(which contrail-control) --conf_file /etc/contrail/contrail-control.conf" root root
+    run_process contrail-control "sudo $(which contrail-control) --conf_file /etc/contrail/contrail-control.conf" root root
     run_process contrail-collector "$(which contrail-collector) --conf_file /etc/contrail/contrail-collector.conf"
     run_process contrail-analytic "$(which contrail-analytics-api) --conf_file /etc/contrail/contrail-analytics-api.conf"
     run_process contrail-query "$(which contrail-query-engine) --conf_file /etc/contrail/contrail-query-engine.conf"
